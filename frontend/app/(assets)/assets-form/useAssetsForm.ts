@@ -1,3 +1,4 @@
+import { uploadAssets } from "@/services/assets.api";
 import { useState } from "react";
 import { useForm } from "react-hook-form"
 
@@ -33,7 +34,7 @@ export function useAssetsForm(props: UseAssetFormProps): UseAssetFormReturn {
     formData.append("assetFile", data.assetFile.item(0) as File);
 
     try {
-      // Logic to upload the file
+      await uploadAssets(formData);
 
       alert('Uploaded successfully!');
       methods.reset();
