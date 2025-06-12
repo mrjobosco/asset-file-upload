@@ -1,7 +1,7 @@
 import { get, post } from './base.api';
 import { Asset } from '@/types/assets';
 
-const BASE_URL = 'http://localhost:5001/assets';
+const ASSETS_BASE_URL = '/assets';
 
 export type AssetParams = {
   companyId?: string;
@@ -26,7 +26,7 @@ export async function getAssets(params?: AssetParams): Promise<Array<Asset>> {
     }
   }
 
-  return await get<Array<Asset>>(`${BASE_URL}${query}`, {
+  return await get<Array<Asset>>(`${ASSETS_BASE_URL}${query}`, {
     next: {
       tags: ['assets'],
     }
@@ -34,7 +34,7 @@ export async function getAssets(params?: AssetParams): Promise<Array<Asset>> {
 };
 
 export async function uploadAssets(data: FormData): Promise<unknown> {
-  return await post<unknown>(`${BASE_URL}/upload`, data);
+  return await post<unknown>(`${ASSETS_BASE_URL}/upload`, data);
 };
 
 
